@@ -44,8 +44,8 @@ static void print_board(const GameInfo_t *g) {
 }
 
 static void print_next(int topY, int leftX, const GameInfo_t *g) {
-  for (int y = 0; y < 4; y++) {
-    for (int x = 0; x < 4; x++) {
+  for (int y = 0; y < TETRAMINO_SIZE_MAX; y++) {
+    for (int x = 0; x < TETRAMINO_SIZE_MAX; x++) {
       if (g->next[x][y]) {
         attron(A_BOLD);
         mvaddch(topY + y, leftX + x, '#');

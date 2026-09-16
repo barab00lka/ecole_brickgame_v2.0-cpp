@@ -10,8 +10,8 @@
 
 int field_buf[FIELD_ROWS][FIELD_COLS];
 int *field_ptr[FIELD_ROWS];
-int next_buf[4][4];
-int *next_ptr[4];
+int next_buf[TETRAMINO_SIZE_MAX][TETRAMINO_SIZE_MAX];
+int *next_ptr[TETRAMINO_SIZE_MAX];
 
 static tetrisCtx_t ctx = (tetrisCtx_t){};
 

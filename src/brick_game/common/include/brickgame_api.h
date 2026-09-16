@@ -51,13 +51,13 @@ typedef enum {
 
 extern int field_buf[FIELD_ROWS][FIELD_COLS];
 extern int *field_ptr[FIELD_ROWS];
-extern int next_buf[4][4];
-extern int *next_ptr[4];
+extern int next_buf[TETRAMINO_SIZE_MAX][TETRAMINO_SIZE_MAX];
+extern int *next_ptr[TETRAMINO_SIZE_MAX];
 
 // Инициализация указателей (вызывается один раз в main)
 static inline void init_viewbuffers() {
   for (int i = 0; i < FIELD_ROWS; ++i) field_ptr[i] = field_buf[i];
-  for (int i = 0; i < 4; ++i) next_ptr[i] = next_buf[i];
+  for (int i = 0; i < TETRAMINO_SIZE_MAX; ++i) next_ptr[i] = next_buf[i];
 }
 
 #ifdef __cplusplus
