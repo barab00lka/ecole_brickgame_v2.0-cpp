@@ -76,7 +76,8 @@ add_library(brick_game_cli OBJECT gui/cli/cli.c)
 target_include_directories(brick_game_cli PUBLIC
     brick_game/common/include
 )
-target_link_libraries(brick_game_cli PUBLIC ncursesw)
+pkg_check_modules(CURSES REQUIRED IMPORTED_TARGET ncursesw)
+target_link_libraries(brick_game_cli PUBLIC PkgConfig::CURSES)
 target_link_options(brick_game_cli PUBLIC -static)     
 target_compile_definitions(brick_game_cli PUBLIC NCURSES_STATIC)
 
