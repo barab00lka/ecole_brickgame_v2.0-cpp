@@ -77,6 +77,8 @@ target_include_directories(brick_game_cli PUBLIC
     brick_game/common/include
 )
 target_link_libraries(brick_game_cli PUBLIC ncursesw)
+target_link_options(brick_game_cli PUBLIC -static)     
+target_compile_definitions(brick_game_cli PUBLIC NCURSES_STATIC)
 
 # Tetris CLI app
 add_executable(tetris.out gui/cli/tetris_cli.c)
