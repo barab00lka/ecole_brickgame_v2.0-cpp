@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#ifdef __MINGW64__
-#include <ncursesw/ncurses.h>
+#ifdef __MINGW32__
+#include <ncursesw/curses.h>
 #else
 #include <curses.h>
 #endif

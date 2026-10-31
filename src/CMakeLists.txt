@@ -7,9 +7,17 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Name of the project
 project(BrickGame-CPP VERSION 2.0.0)
-include(CTest)
-find_package(GTest REQUIRED)
 find_package(PkgConfig REQUIRED)
+include(CTest)
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        988ea2c1798de7779f656df2281dd36d6039a17a
+  FIND_PACKAGE_ARGS NAMES GTest
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
 
 # Tetris lib
@@ -62,7 +70,6 @@ target_include_directories(snake PUBLIC "brick_game"
     brick_game/common/include
 )
 
-# Tests for snake
 add_executable(test_snake ${SNAKE_DIR}/tests/test_snake.cc)
 target_link_libraries(test_snake PRIVATE
 	snake
@@ -76,9 +83,11 @@ add_library(brick_game_cli OBJECT gui/cli/cli.c)
 target_include_directories(brick_game_cli PUBLIC
     brick_game/common/include
 )
-pkg_check_modules(CURSES REQUIRED IMPORTED_TARGET ncursesw)
-target_link_libraries(brick_game_cli PUBLIC PkgConfig::CURSES)
-target_link_options(brick_game_cli PUBLIC -static)     
+# pkg_check_modules(CURSES REQUIRED IMPORTED_TARGET ncursesw)
+find_package(Curses REQUIRED)
+target_link_libraries(brick_game_cli PUBLIC ncursesw)
+# target_link_libraries(brick_game_cli PUBLIC PkgConfig::CURSES)
+target_link_options(brick_game_cli PUBLIC -static)
 target_compile_definitions(brick_game_cli PUBLIC NCURSES_STATIC)
 
 # Tetris CLI app

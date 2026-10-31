@@ -1,9 +1,3 @@
-#ifdef __MINGW64__
-#include <ncursesw/ncurses.h>
-#else
-#define _POSIX_C_SOURCE 200809L
-#include <ncurses.h>
-#endif
 #include <locale.h>
 #include <stdlib.h>
 #include <time.h>
